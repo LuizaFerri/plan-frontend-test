@@ -1,1 +1,2 @@
-export type { UserProps } from './userProps'
+// Seus tipos personalizados vão aqui
+export {}

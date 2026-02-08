@@ -1,6 +1,54 @@
 # ⭐ Desafio Técnico – Desenvolvedor(a) Front-End (Next.js)
 
-​
+## Como Rodar o Projeto
+
+### Pré-requisitos
+- Node.js 18+ instalado
+- npm ou yarn
+
+### Instalação
+
+```bash
+# Clone o repositório
+git clone [seu-repositório]
+
+# Entre na pasta do projeto
+cd plan-frontend-test
+
+# Instale as dependências
+npm install
+
+# Rode o projeto em modo de desenvolvimento
+npm run dev
+```
+
+O projeto estará disponível em [http://localhost:3000](http://localhost:3000)
+
+### Scripts Disponíveis
+
+```bash
+npm run dev      # Inicia o servidor de desenvolvimento
+npm run build    # Cria a build de produção
+npm run start    # Inicia o servidor de produção
+npm run lint     # Executa o linter
+npm run format   # Formata o código
+```
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+src/
+├── app/              # Páginas e rotas do Next.js (App Router)
+├── components/       # Componentes reutilizáveis
+├── hooks/            # Hooks customizados
+├── services/         # Serviços de API (REST Countries)
+├── styles/           # Estilos globais (SCSS)
+└── @types/           # Definições de tipos TypeScript
+```
+
+---
 
 ## ⭐ Objetivo
 
