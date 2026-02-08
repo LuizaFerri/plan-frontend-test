@@ -3,3 +3,13 @@
 :root {
   font-size: 16px;
 }
+
+* {
+  font-family: var(--font-exo);
+  font-size: 15px;
+  line-height: 100%;
+}
+
+.footer-copyright {
+  font-family: var(--font-open-sans);
+}

@@ -11,21 +11,22 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-orange': 'linear-gradient(135deg, #f68824 0%, #fcbb4f 50%, #fdc759 100%)',
       },
-    },
-    colors: {
-      'blue_light': '#00AFEF',
-      'blue_intermediate': '#1D5A82',
-      'blue_dark': '#262642',
-      'pink_light': '#EC268F',
-      'red_light': '#E02023',
-    },
-    fontSize: {
-      xs: '0.8125rem',
-      sm: '0.9375rem',
-      df: '1rem',
-      lg: '1.25rem',
-      xl: '2rem',
+      colors: {
+        'orange': {
+          'strong': '#f68824',
+          'medium': '#fcbb4f',
+          'light': '#fdc759',
+        },
+      },
+      fontSize: {
+        xs: '0.8125rem',
+        sm: '0.9375rem',
+        df: '1rem',
+        lg: '1.25rem',
+        xl: '2rem',
+      },
     }
   },
   plugins: [],

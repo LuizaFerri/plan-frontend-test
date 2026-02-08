@@ -57,11 +57,14 @@ export default defineConfig([
       ],
 
       semi: ['error', 'never'],
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       'no-empty-function': 'off',
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       'react/display-name': 'off',
       'react/prop-types': 'off',
+      'react/react-in-jsx-scope': 'off',
 
       'import-helpers/order-imports': [
         'error',

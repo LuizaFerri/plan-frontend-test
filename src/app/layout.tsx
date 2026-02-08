@@ -1,11 +1,21 @@
 import React from 'react'
 
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Exo, Open_Sans } from 'next/font/google'
 
 import '@/styles/globals.scss'
 
-const inter = Inter({ subsets: ['latin'] })
+const exo = Exo({
+  subsets: ['latin'],
+  weight: '700',
+  style: 'italic',
+  variable: '--font-exo'
+})
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-open-sans'
+})
 
 export const metadata: Metadata = {
   title: 'REST Countries',
@@ -19,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>{children}</body>
+      <body className={`${exo.variable} ${openSans.variable}`}>{children}</body>
     </html>
   )
 }
