@@ -204,4 +204,5 @@ As instruções para rodar o projeto localmente estão na seção [Como Rodar o 
 - **Componentização**: 11 componentes reutilizáveis com barrel exports, separação clara de responsabilidades.
 
 ## ⭐ Link do deploy (se houver)
+[Countries](https://plan-frontend-test-beta.vercel.app/)
 
