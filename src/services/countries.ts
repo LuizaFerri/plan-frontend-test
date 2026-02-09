@@ -1,4 +1,4 @@
-import { api } from './api'
+import { fetchFromAPI } from './api'
 
 export interface Country {
   name: {
@@ -11,6 +11,7 @@ export interface Country {
       official: string
     }
   }
+  capital?: string[]
   flags: {
     svg: string
     png: string
@@ -23,12 +24,13 @@ export interface Country {
   cca3: string
 }
 
+const FIELDS = 'name,translations,capital,flags,region,subregion,population,languages,currencies,cca3'
+
 export async function getAllCountries(): Promise<Country[]> {
-  const response = await api.get<Country[]>('/all')
-  return response.data
+  return fetchFromAPI<Country[]>(`/all?fields=${FIELDS}`)
 }
 
 export async function getCountryByCode(code: string): Promise<Country> {
-  const response = await api.get<Country[]>(`/alpha/${code}`)
-  return response.data[0]
+  const data = await fetchFromAPI<Country[]>(`/alpha/${code}?fields=${FIELDS}`)
+  return data[0]
 }
