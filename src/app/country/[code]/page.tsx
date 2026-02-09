@@ -1,10 +1,51 @@
 import Image from 'next/image'
 
 import { Footer, BackButton } from '@/components'
+import { getCountryByCode } from '@/services/countries'
 import { colors } from '@/styles/colors'
 
-const getRegionImage = (region: string) => {
-  const regionMap: { [key: string]: string } = {
+const REGION_MAP: Record<string, string> = {
+  'Africa': 'África',
+  'Americas': 'América do Norte',
+  'Asia': 'Ásia',
+  'Europe': 'Europa',
+  'Oceania': 'Oceania',
+}
+
+const SUBREGION_MAP: Record<string, string> = {
+  'South America': 'América do Sul',
+  'Central America': 'América Central',
+  'Caribbean': 'Caribe',
+  'Northern Africa': 'Norte da África',
+  'Western Africa': 'África Ocidental',
+  'Eastern Africa': 'África Oriental',
+  'Southern Africa': 'África Austral',
+  'Middle Africa': 'África Central',
+  'Western Europe': 'Europa Ocidental',
+  'Eastern Europe': 'Europa Oriental',
+  'Northern Europe': 'Europa Setentrional',
+  'Southern Europe': 'Europa Meridional',
+  'Southeast Europe': 'Sudeste Europeu',
+  'Central Europe': 'Europa Central',
+  'Western Asia': 'Ásia Ocidental',
+  'Southern Asia': 'Ásia Meridional',
+  'Eastern Asia': 'Ásia Oriental',
+  'South-Eastern Asia': 'Sudeste Asiático',
+  'Central Asia': 'Ásia Central',
+  'Australia and New Zealand': 'Austrália e Nova Zelândia',
+  'Melanesia': 'Melanésia',
+  'Micronesia': 'Micronésia',
+  'Polynesia': 'Polinésia',
+  'Northern America': 'América do Norte',
+}
+
+function getRegionLabel(region: string, subregion?: string): string {
+  if (subregion === 'South America') return 'América do Sul'
+  return REGION_MAP[region] || region
+}
+
+const getRegionImage = (regionLabel: string) => {
+  const regionMap: Record<string, string> = {
     'África': '/img/africa.png',
     'Europa': '/img/europa.png',
     'Ásia': '/img/asia.png',
@@ -12,21 +53,35 @@ const getRegionImage = (region: string) => {
     'América do Sul': '/img/southamerica.png',
     'Oceania': '/img/oceania.png',
   }
-  return regionMap[region] || '/img/region-icon.png'
+  return regionMap[regionLabel] || '/img/region-icon.png'
 }
 
-export default function CountryDetail() {
-  const country = {
-    name: 'Afeganistão',
-    officialName: 'Emirado Islâmico do Afeganistão',
-    capital: 'Cabul',
-    population: '32.225.560',
-    currency: 'Afegani afegão',
-    languages: 'Pashto e Dari',
-    region: 'Ásia',
-    subRegion: 'Oriente-Médio',
-    flag: 'https://flagcdn.com/af.svg',
-  }
+function formatPopulation(population: number): string {
+  return population.toLocaleString('pt-BR')
+}
+
+function formatCurrencies(currencies?: Record<string, { name: string; symbol: string }>): string {
+  if (!currencies) return '—'
+  return Object.values(currencies).map((c) => c.name).join(', ')
+}
+
+function formatLanguages(languages?: Record<string, string>): string {
+  if (!languages) return '—'
+  return Object.values(languages).join(', ')
+}
+
+interface PageProps {
+  params: Promise<{ code: string }>
+}
+
+export default async function CountryDetail({ params }: PageProps) {
+  const { code } = await params
+  const data = await getCountryByCode(code)
+
+  const name = data.translations?.por?.common || data.name.common
+  const officialName = data.translations?.por?.official || data.name.official
+  const regionLabel = getRegionLabel(data.region, data.subregion)
+  const subRegionLabel = SUBREGION_MAP[data.subregion || ''] || data.subregion || '—'
 
   return (
     <div
@@ -59,11 +114,11 @@ export default function CountryDetail() {
                 className="text-white font-bold text-xl"
                 style={{ fontStyle: 'italic' }}
               >
-                {country.region}
+                {regionLabel}
               </span>
               <Image
-                src={getRegionImage(country.region)}
-                alt={country.region}
+                src={getRegionImage(regionLabel)}
+                alt={regionLabel}
                 width={60}
                 height={60}
                 className="opacity-50"
@@ -78,8 +133,8 @@ export default function CountryDetail() {
                 <div className="flex flex-col">
                   <div className="relative detail-flag mx-auto lg:mx-0">
                     <Image
-                      src={country.flag}
-                      alt={`Bandeira ${country.name}`}
+                      src={data.flags.svg}
+                      alt={`Bandeira ${name}`}
                       fill
                       className="object-contain"
                     />
@@ -93,7 +148,7 @@ export default function CountryDetail() {
                     className="font-bold detail-title"
                     style={{ fontStyle: 'italic', color: colors.mediumGray, marginBottom: '15px' }}
                   >
-                    {country.name}
+                    {name}
                   </h1>
 
                   <div className="space-y-3">
@@ -102,7 +157,7 @@ export default function CountryDetail() {
                         Nome oficial:
                       </span>
                       <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
-                        {country.officialName}
+                        {officialName}
                       </span>
                     </div>
                     <div className="flex gap-3">
@@ -110,7 +165,7 @@ export default function CountryDetail() {
                         Capital:
                       </span>
                       <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
-                        {country.capital}
+                        {data.capital?.[0] || '—'}
                       </span>
                     </div>
                     <div className="flex gap-3">
@@ -118,7 +173,7 @@ export default function CountryDetail() {
                         População:
                       </span>
                       <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
-                        {country.population}
+                        {formatPopulation(data.population)}
                       </span>
                     </div>
                     <div className="flex gap-3">
@@ -126,7 +181,7 @@ export default function CountryDetail() {
                         Moeda:
                       </span>
                       <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
-                        {country.currency}
+                        {formatCurrencies(data.currencies)}
                       </span>
                     </div>
                     <div className="flex gap-3">
@@ -134,7 +189,7 @@ export default function CountryDetail() {
                         Idiomas:
                       </span>
                       <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
-                        {country.languages}
+                        {formatLanguages(data.languages)}
                       </span>
                     </div>
                     <div className="flex gap-3">
@@ -142,7 +197,7 @@ export default function CountryDetail() {
                         Região:
                       </span>
                       <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
-                        {country.region}
+                        {regionLabel}
                       </span>
                     </div>
                     <div className="flex gap-3">
@@ -150,7 +205,7 @@ export default function CountryDetail() {
                         Sub-Região:
                       </span>
                       <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
-                        {country.subRegion}
+                        {subRegionLabel}
                       </span>
                     </div>
                   </div>
