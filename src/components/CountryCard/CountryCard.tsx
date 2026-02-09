@@ -26,8 +26,8 @@ const getRegionImage = (region: string) => {
 
 export function CountryCard({ name, capital, region, flag, code }: CountryCardProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow country-card">
-      <div className="relative px-4 py-3 flex items-center justify-between" style={{ backgroundColor: colors.darkGray, height: '60px' }}>
+    <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow country-card" style={{ width: '310px' }}>
+      <div className="relative px-4 py-3 flex items-center justify-between" style={{ backgroundColor: colors.darkGray, height: '47px' }}>
         <span className="text-white font-bold text-lg" style={{ fontStyle: 'italic' }}>{region}</span>
         <Image
           src={getRegionImage(region)}

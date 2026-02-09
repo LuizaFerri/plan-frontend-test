@@ -40,8 +40,11 @@ export function RegionFilters({ selectedRegions, onChange }: RegionFiltersProps)
             onClick={() => handleToggle(region.value)}
           >
             <div
-              className="relative w-6 h-6 rounded-full flex items-center justify-center"
+              className="relative flex items-center justify-center"
               style={{
+                width: '25px',
+                height: '25px',
+                borderRadius: '10px',
                 border: `3px solid ${colors.white}`,
                 backgroundColor: isSelected ? colors.primaryAlt : 'transparent'
               }}
