@@ -1,92 +1,132 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 
 import { Header, CountryGrid, Pagination, Footer } from '@/components'
+import type { Country } from '@/services/countries'
 import { colors } from '@/styles/colors'
 
-const MOCK_COUNTRIES = [
-  {
-    name: 'Afeganistão',
-    capital: 'Cabul',
-    region: 'Ásia',
-    flag: 'https://flagcdn.com/af.svg',
-    code: 'afg',
-  },
-  {
-    name: 'África do Sul',
-    capital: 'Pretória',
-    region: 'África',
-    flag: 'https://flagcdn.com/za.svg',
-    code: 'zaf',
-  },
-  {
-    name: 'Albânia',
-    capital: 'Tirana',
-    region: 'Europa',
-    flag: 'https://flagcdn.com/al.svg',
-    code: 'alb',
-  },
-  {
-    name: 'Alemanha',
-    capital: 'Berlim',
-    region: 'Europa',
-    flag: 'https://flagcdn.com/de.svg',
-    code: 'deu',
-  },
-  {
-    name: 'Andorra',
-    capital: 'Andorra-a-Velha',
-    region: 'Europa',
-    flag: 'https://flagcdn.com/ad.svg',
-    code: 'and',
-  },
-  {
-    name: 'Angola',
-    capital: 'Luanda',
-    region: 'África',
-    flag: 'https://flagcdn.com/ao.svg',
-    code: 'ago',
-  },
-  {
-    name: 'Anguilla',
-    capital: 'The Valley',
-    region: 'América do Norte',
-    flag: 'https://flagcdn.com/ai.svg',
-    code: 'aia',
-  },
-  {
-    name: 'Antigua e Barbuda',
-    capital: "Saint John's",
-    region: 'América do Norte',
-    flag: 'https://flagcdn.com/ag.svg',
-    code: 'atg',
-  },
-]
+const REGION_MAP: Record<string, string> = {
+  'Africa': 'África',
+  'Americas': 'América do Norte',
+  'Asia': 'Ásia',
+  'Europe': 'Europa',
+  'Oceania': 'Oceania',
+}
 
-export default function HomeContent() {
+const SUBREGION_OVERRIDE: Record<string, string> = {
+  'South America': 'América do Sul',
+}
+
+const LANGUAGE_MAP: Record<string, string> = {
+  'portuguese': 'por',
+  'english': 'eng',
+  'spanish': 'spa',
+  'french': 'fra',
+}
+
+function getRegionLabel(country: Country): string {
+  if (country.subregion && SUBREGION_OVERRIDE[country.subregion]) {
+    return SUBREGION_OVERRIDE[country.subregion]
+  }
+  return REGION_MAP[country.region] || country.region
+}
+
+function mapCountryToCard(country: Country) {
+  return {
+    name: country.translations?.por?.common || country.name.common,
+    capital: country.capital?.[0] || '—',
+    region: getRegionLabel(country),
+    flag: country.flags.svg,
+    code: country.cca3.toLowerCase(),
+  }
+}
+
+interface HomeContentProps {
+  countries: Country[]
+}
+
+export default function HomeContent({ countries }: HomeContentProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedLanguage, setSelectedLanguage] = useState('')
   const [selectedRegions, setSelectedRegions] = useState<string[]>([])
   const [currentPage, setCurrentPage] = useState(1)
 
   const itemsPerPage = 8
-  const totalPages = Math.ceil(MOCK_COUNTRIES.length / itemsPerPage)
+
+  const filteredCountries = useMemo(() => {
+    let result = countries
+
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase()
+      result = result.filter((c) => {
+        const namePt = c.translations?.por?.common?.toLowerCase() || ''
+        const nameEn = c.name.common.toLowerCase()
+        return namePt.includes(query) || nameEn.includes(query)
+      })
+    }
+
+    if (selectedRegions.length > 0) {
+      result = result.filter((c) => {
+        return selectedRegions.some((r) => {
+          if (r === 'South America') return c.subregion === 'South America'
+          if (r === 'Americas') return c.region === 'Americas' && c.subregion !== 'South America'
+          return c.region === r
+        })
+      })
+    }
+
+    if (selectedLanguage) {
+      const langCode = LANGUAGE_MAP[selectedLanguage]
+      if (langCode) {
+        result = result.filter((c) => c.languages && langCode in c.languages)
+      }
+    }
+
+    result.sort((a, b) => {
+      const nameA = a.translations?.por?.common || a.name.common
+      const nameB = b.translations?.por?.common || b.name.common
+      return nameA.localeCompare(nameB, 'pt-BR')
+    })
+
+    return result
+  }, [countries, searchQuery, selectedRegions, selectedLanguage])
+
+  const totalPages = Math.ceil(filteredCountries.length / itemsPerPage)
+  const paginatedCountries = filteredCountries.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  )
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value)
+    setCurrentPage(1)
+  }
+
+  const handleRegionsChange = (regions: string[]) => {
+    setSelectedRegions(regions)
+    setCurrentPage(1)
+  }
+
+  const handleLanguageChange = (value: string) => {
+    setSelectedLanguage(value)
+    setCurrentPage(1)
+  }
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: colors.gradient }}>
       <Header
         searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
+        onSearchChange={handleSearchChange}
         selectedLanguage={selectedLanguage}
-        onLanguageChange={setSelectedLanguage}
+        onLanguageChange={handleLanguageChange}
         selectedRegions={selectedRegions}
-        onRegionsChange={setSelectedRegions}
+        onRegionsChange={handleRegionsChange}
       />
 
       <main className="flex-1 py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <CountryGrid countries={MOCK_COUNTRIES} />
+          <CountryGrid countries={paginatedCountries.map(mapCountryToCard)} />
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
