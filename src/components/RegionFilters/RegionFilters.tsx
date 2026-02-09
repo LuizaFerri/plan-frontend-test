@@ -35,17 +35,20 @@ export function RegionFilters({ selectedRegions, onChange }: RegionFiltersProps)
           key={region.value}
           className="flex items-center gap-2 cursor-pointer group"
         >
-          <div className="relative">
+          <div
+            className="relative w-6 h-6 rounded-full cursor-pointer flex items-center justify-center"
+            style={{ border: `3px solid ${colors.white}`, backgroundColor: selectedRegions.includes(region.value) ? colors.primaryAlt : 'transparent' }}
+            onClick={() => handleToggle(region.value)}
+          >
             <input
               type="checkbox"
               checked={selectedRegions.includes(region.value)}
               onChange={() => handleToggle(region.value)}
-              className="w-6 h-6 appearance-none cursor-pointer checked:bg-[#f68824] rounded-full"
-              style={{ borderWidth: '3px', borderColor: colors.white, borderStyle: 'solid' }}
+              className="sr-only"
             />
             {selectedRegions.includes(region.value) && (
               <svg
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-white pointer-events-none"
+                className="w-3.5 h-3.5 text-white pointer-events-none"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
