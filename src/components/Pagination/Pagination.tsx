@@ -7,5 +7,5 @@ interface PaginationProps {
 }
 
 export function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-    return <PaginationButtons currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+  return <PaginationButtons currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
 }

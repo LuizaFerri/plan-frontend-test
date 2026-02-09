@@ -7,8 +7,8 @@ import '@/styles/globals.scss'
 
 const exo = Exo({
   subsets: ['latin'],
-  weight: '700',
-  style: 'italic',
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
   variable: '--font-exo'
 })
 
