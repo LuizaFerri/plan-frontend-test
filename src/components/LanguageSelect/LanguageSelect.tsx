@@ -13,6 +13,7 @@ export function LanguageSelect({ value, onChange }: LanguageSelectProps) {
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        aria-label="Filtrar por idioma"
         className="w-full h-full appearance-none px-6 rounded-full text-black font-medium focus:outline-none cursor-pointer"
         style={{ backgroundColor: colors.primaryAlt, fontStyle: 'italic', borderWidth: '3px', borderColor: colors.white, borderStyle: 'solid' }}
       >

@@ -16,6 +16,7 @@ export function SearchBar({ value, onChange, placeholder = 'Informe o país que 
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
+        aria-label="Buscar país"
         className="w-full h-full pl-6 pr-12 border-3 rounded-full bg-transparent focus:outline-none placeholder:text-black"
         style={{ color: colors.black, fontStyle: 'italic', borderWidth: '3px', borderColor: colors.white, borderStyle: 'solid' }}
       />

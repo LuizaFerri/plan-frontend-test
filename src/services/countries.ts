@@ -31,6 +31,5 @@ export async function getAllCountries(): Promise<Country[]> {
 }
 
 export async function getCountryByCode(code: string): Promise<Country> {
-  const data = await fetchFromAPI<Country[]>(`/alpha/${code}?fields=${FIELDS}`)
-  return data[0]
+  return fetchFromAPI<Country>(`/alpha/${code}?fields=${FIELDS}`)
 }

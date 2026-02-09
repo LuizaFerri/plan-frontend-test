@@ -173,12 +173,35 @@ Este projeto deve ser utilizado como base para o desenvolvimento do seu teste. A
 
 ## ⭐ Instruções
 
-​
+As instruções para rodar o projeto localmente estão na seção [Como Rodar o Projeto](#como-rodar-o-projeto) no topo deste README.
 
 ## ⭐ Breve explicação
 
-​
+### Arquitetura
+
+- **Next.js 15 com App Router**: Utilizado para aproveitar Server Components, permitindo buscar dados da API diretamente no servidor sem expor chamadas ao cliente. A página inicial faz o fetch no servidor e passa os dados ao client component que gerencia filtros e paginação. A página de detalhes é 100% Server Component.
+- **TypeScript com strict mode**: Tipagem forte em todo o projeto, com interfaces definidas para os dados da API e props dos componentes.
+- **Fetch nativo do Next.js**: Substituído o axios pelo `fetch` nativo, aproveitando o cache integrado do Next.js com `revalidate: 3600` (1 hora) para otimizar performance e reduzir chamadas à API.
+
+### Estilização
+
+- **TailwindCSS 4**: Utilizado para estilização utilitária e responsividade com breakpoints (`sm`, `lg`).
+- **SCSS (globals.scss)**: Classes CSS responsivas com `@media` queries para valores que não podem ser aplicados via Tailwind em inline styles, mantendo o layout desktop pixel-perfect.
+- **Tokens de cores centralizados** (`colors.ts`): Todas as cores do projeto em um único arquivo, facilitando manutenção e consistência visual.
+
+### Dados e Filtros
+
+- **REST Countries API v3.1**: Campo `?fields=` utilizado para otimizar o payload, trazendo apenas os campos necessários.
+- **Traduções em português**: Nome e nome oficial dos países exibidos em português via `translations.por`, com fallback para inglês.
+- **Filtros combinados**: Busca textual (PT e EN), filtro por continente (checkboxes multi-select) e filtro por idioma (select) funcionam em conjunto com paginação.
+- **Mapeamento de regiões**: Regiões e sub-regiões da API traduzidas para português, separando "América do Sul" de "América do Norte" dentro da região "Americas" da API.
+
+### Qualidade
+
+- **ESLint** configurado com plugins para TypeScript, React, import helpers e integração com Prettier.
+- **Prettier** configurado para formatação consistente (single quotes, sem semicolons, trailing commas).
+- **Acessibilidade**: Atributos `aria-label` nos controles interativos, `sr-only` para inputs ocultos, HTML semântico (`<header>`, `<main>`, `<footer>`), atributo `lang="pt-BR"` no HTML.
+- **Componentização**: 11 componentes reutilizáveis com barrel exports, separação clara de responsabilidades.
 
 ## ⭐ Link do deploy (se houver)
 
-​
