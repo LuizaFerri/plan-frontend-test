@@ -1,3 +1,5 @@
+import { colors } from '@/styles/colors'
+
 interface Region {
   name: string
   value: string
@@ -39,7 +41,7 @@ export function RegionFilters({ selectedRegions, onChange }: RegionFiltersProps)
               checked={selectedRegions.includes(region.value)}
               onChange={() => handleToggle(region.value)}
               className="w-6 h-6 appearance-none cursor-pointer checked:bg-[#f68824] rounded-full"
-              style={{ borderWidth: '3px', borderColor: 'white', borderStyle: 'solid' }}
+              style={{ borderWidth: '3px', borderColor: colors.white, borderStyle: 'solid' }}
             />
             {selectedRegions.includes(region.value) && (
               <svg

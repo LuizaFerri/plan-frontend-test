@@ -1,6 +1,8 @@
 import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 
+import { colors } from '@/styles/colors'
+
 import CountryCardButton from './CountryCardButton'
 
 interface CountryCardProps {
@@ -26,7 +28,7 @@ const getRegionImage = (region: string) => {
 export function CountryCard({ name, capital, region, flag, code }: CountryCardProps) {
   return (
     <div className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow" style={{ width: '310px', height: '238px' }}>
-      <div className="relative px-4 py-3 flex items-center justify-between" style={{ backgroundColor: '#58595B', height: '60px' }}>
+      <div className="relative px-4 py-3 flex items-center justify-between" style={{ backgroundColor: colors.darkGray, height: '60px' }}>
         <span className="text-white font-bold text-lg" style={{ fontStyle: 'italic' }}>{region}</span>
         <Image
           src={getRegionImage(region)}
@@ -52,7 +54,7 @@ export function CountryCard({ name, capital, region, flag, code }: CountryCardPr
           {name}
         </h3>
 
-        <div className="flex items-center gap-2 mb-6" style={{ color: '#f68824' }}>
+        <div className="flex items-center gap-2 mb-6" style={{ color: colors.primary }}>
           <MapPin className="w-4 h-4" />
           <span className="text-sm font-medium">{capital}</span>
         </div>

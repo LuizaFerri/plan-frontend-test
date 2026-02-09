@@ -2,6 +2,8 @@
 
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+import { colors } from '@/styles/colors'
+
 interface PaginationButtonsProps {
     currentPage: number
     totalPages: number
@@ -31,7 +33,7 @@ export default function PaginationButtons({ currentPage, totalPages, onPageChang
         className="p-2 rounded-full bg-white hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
         aria-label="Página anterior"
       >
-        <ChevronLeft className="w-6 h-6" style={{ color: '#f68824' }} />
+        <ChevronLeft className="w-6 h-6" style={{ color: colors.primary }} />
       </button>
 
       <div className="flex gap-2">
@@ -54,7 +56,7 @@ export default function PaginationButtons({ currentPage, totalPages, onPageChang
         className="p-2 rounded-full bg-white hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
         aria-label="Próxima página"
       >
-        <ChevronRight className="w-6 h-6" style={{ color: '#f68824' }} />
+        <ChevronRight className="w-6 h-6" style={{ color: colors.primary }} />
       </button>
     </div>
   )

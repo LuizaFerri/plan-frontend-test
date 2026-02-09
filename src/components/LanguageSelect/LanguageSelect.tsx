@@ -1,5 +1,7 @@
 import { ChevronDown } from 'lucide-react'
 
+import { colors } from '@/styles/colors'
+
 interface LanguageSelectProps {
   value: string
   onChange: (value: string) => void
@@ -12,13 +14,13 @@ export function LanguageSelect({ value, onChange }: LanguageSelectProps) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full h-full appearance-none px-6 rounded-full text-black font-medium focus:outline-none cursor-pointer"
-        style={{ backgroundColor: '#f68824', fontStyle: 'italic', borderWidth: '3px', borderColor: 'white', borderStyle: 'solid' }}
+        style={{ backgroundColor: colors.primary, fontStyle: 'italic', borderWidth: '3px', borderColor: colors.white, borderStyle: 'solid' }}
       >
-        <option value="" style={{ backgroundColor: '#f68824', color: 'black' }}>Selecione o idioma</option>
-        <option value="portuguese" style={{ backgroundColor: '#f68824', color: 'black' }}>Português</option>
-        <option value="english" style={{ backgroundColor: '#f68824', color: 'black' }}>Inglês</option>
-        <option value="spanish" style={{ backgroundColor: '#f68824', color: 'black' }}>Espanhol</option>
-        <option value="french" style={{ backgroundColor: '#f68824', color: 'black' }}>Francês</option>
+        <option value="" style={{ backgroundColor: colors.primary, color: colors.black }}>Selecione o idioma</option>
+        <option value="portuguese" style={{ backgroundColor: colors.primary, color: colors.black }}>Português</option>
+        <option value="english" style={{ backgroundColor: colors.primary, color: colors.black }}>Inglês</option>
+        <option value="spanish" style={{ backgroundColor: colors.primary, color: colors.black }}>Espanhol</option>
+        <option value="french" style={{ backgroundColor: colors.primary, color: colors.black }}>Francês</option>
       </select>
       <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
         <ChevronDown className="w-5 h-5 text-white" />

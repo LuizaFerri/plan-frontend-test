@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import { Footer, BackButton } from '@/components'
+import { colors } from '@/styles/colors'
 
 const getRegionImage = (region: string) => {
   const regionMap: { [key: string]: string } = {
@@ -32,7 +33,7 @@ export default function CountryDetail() {
       className="min-h-screen flex flex-col"
       style={{
         background:
-          'linear-gradient(to bottom, #f68824 0%, #fcbb4f 50%, #fdc759 100%)',
+          colors.gradient,
       }}
     >
       {/* Logo */}
@@ -52,7 +53,7 @@ export default function CountryDetail() {
             {/* Header */}
             <div
               className="relative px-6 flex items-center justify-between"
-              style={{ backgroundColor: '#58595B', height: '69px' }}
+              style={{ backgroundColor: colors.darkGray, height: '69px' }}
             >
               <span
                 className="text-white font-bold text-xl"
@@ -93,65 +94,65 @@ export default function CountryDetail() {
                 <div style={{ width: '750px' }}>
                   <h1
                     className="font-bold"
-                    style={{ fontStyle: 'italic', fontSize: '50px', color: '#707070', marginBottom: '15px' }}
+                    style={{ fontStyle: 'italic', fontSize: '50px', color: colors.mediumGray, marginBottom: '15px' }}
                   >
                     {country.name}
                   </h1>
 
                   <div className="space-y-3">
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: '#707070', minWidth: '140px', textAlign: 'right' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
                         Nome oficial:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: '#707070' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.officialName}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: '#707070', minWidth: '140px', textAlign: 'right' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
                         Capital:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: '#707070' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.capital}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: '#707070', minWidth: '140px', textAlign: 'right' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
                         População:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: '#707070' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.population}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: '#707070', minWidth: '140px', textAlign: 'right' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
                         Moeda:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: '#707070' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.currency}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: '#707070', minWidth: '140px', textAlign: 'right' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
                         Idiomas:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: '#707070' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.languages}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: '#707070', minWidth: '140px', textAlign: 'right' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
                         Região:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: '#707070' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.region}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: '#707070', minWidth: '140px', textAlign: 'right' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
                         Sub-Região:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: '#707070' }}>
+                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.subRegion}
                       </span>
                     </div>

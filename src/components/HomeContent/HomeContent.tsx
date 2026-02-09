@@ -3,6 +3,7 @@
 import { useState } from 'react'
 
 import { Header, CountryGrid, Pagination, Footer } from '@/components'
+import { colors } from '@/styles/colors'
 
 const MOCK_COUNTRIES = [
   {
@@ -73,7 +74,7 @@ export default function HomeContent() {
   const totalPages = Math.ceil(MOCK_COUNTRIES.length / itemsPerPage)
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(to bottom, #f68824 0%, #fcbb4f 50%, #fdc759 100%)' }}>
+    <div className="min-h-screen flex flex-col" style={{ background: colors.gradient }}>
       <Header
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
