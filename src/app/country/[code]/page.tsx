@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Footer, BackButton } from '@/components'
 import { getCountryByCode } from '@/services/countries'
@@ -93,13 +94,15 @@ export default async function CountryDetail({ params }: PageProps) {
     >
       {/* Logo */}
       <div className="px-4 lg:px-8 detail-logo-section">
-        <Image
-          src="/img/logo.png"
-          alt="Plan Logo"
-          width={108}
-          height={59}
-          priority
-        />
+        <Link href="/" className="inline-block cursor-pointer">
+          <Image
+            src="/img/logo.png"
+            alt="Plan Logo"
+            width={108}
+            height={59}
+            priority
+          />
+        </Link>
       </div>
 
       <main className="flex-1 px-4 lg:px-8 pb-12 lg:pb-[205px]">
@@ -108,7 +111,7 @@ export default async function CountryDetail({ params }: PageProps) {
             {/* Header */}
             <div
               className="relative px-6 flex items-center justify-between"
-              style={{ backgroundColor: colors.darkGray, height: '69px' }}
+              style={{ backgroundColor: colors.darkGray, height: '47px' }}
             >
               <span
                 className="text-white font-bold text-xl"
