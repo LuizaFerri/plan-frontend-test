@@ -18,13 +18,6 @@ const SUBREGION_OVERRIDE: Record<string, string> = {
   'South America': 'América do Sul',
 }
 
-const LANGUAGE_MAP: Record<string, string> = {
-  'portuguese': 'por',
-  'english': 'eng',
-  'spanish': 'spa',
-  'french': 'fra',
-}
-
 function getRegionLabel(country: Country): string {
   if (country.subregion && SUBREGION_OVERRIDE[country.subregion]) {
     return SUBREGION_OVERRIDE[country.subregion]
@@ -54,6 +47,24 @@ export default function HomeContent({ countries }: HomeContentProps) {
 
   const itemsPerPage = 8
 
+  const availableLanguages = useMemo(() => {
+    const languagesSet = new Map<string, string>()
+
+    countries.forEach((country) => {
+      if (country.languages) {
+        Object.entries(country.languages).forEach(([code, name]) => {
+          if (!languagesSet.has(code)) {
+            languagesSet.set(code, name)
+          }
+        })
+      }
+    })
+
+    return Array.from(languagesSet.entries())
+      .map(([code, name]) => ({ code, name }))
+      .sort((a, b) => a.name.localeCompare(b.name))
+  }, [countries])
+
   const filteredCountries = useMemo(() => {
     let result = countries
 
@@ -77,10 +88,7 @@ export default function HomeContent({ countries }: HomeContentProps) {
     }
 
     if (selectedLanguage) {
-      const langCode = LANGUAGE_MAP[selectedLanguage]
-      if (langCode) {
-        result = result.filter((c) => c.languages && langCode in c.languages)
-      }
+      result = result.filter((c) => c.languages && selectedLanguage in c.languages)
     }
 
     result.sort((a, b) => {
@@ -122,6 +130,7 @@ export default function HomeContent({ countries }: HomeContentProps) {
         onLanguageChange={handleLanguageChange}
         selectedRegions={selectedRegions}
         onRegionsChange={handleRegionsChange}
+        languages={availableLanguages}
       />
 
       <main className="flex-1 py-8 lg:py-12 px-4 sm:px-6 lg:px-8">

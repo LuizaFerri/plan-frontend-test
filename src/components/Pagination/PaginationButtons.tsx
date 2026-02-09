@@ -30,7 +30,7 @@ export default function PaginationButtons({ currentPage, totalPages, onPageChang
       <button
         onClick={handlePrevious}
         disabled={currentPage === 1}
-        className="flex items-center justify-center bg-transparent hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+        className="flex items-center justify-center bg-transparent hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-opacity"
         style={{ width: '50px', height: '50px', borderRadius: '20px', border: `3px solid ${colors.white}` }}
         aria-label="Página anterior"
       >
@@ -42,7 +42,7 @@ export default function PaginationButtons({ currentPage, totalPages, onPageChang
           <button
             key={index}
             onClick={() => onPageChange(index + 1)}
-            className={`rounded-full transition-all ${currentPage === index + 1
+            className={`rounded-full transition-all cursor-pointer ${currentPage === index + 1
               ? 'w-4 h-4 bg-white'
               : 'w-3 h-3 bg-white/50 hover:bg-white/75'
             }`}
@@ -54,7 +54,7 @@ export default function PaginationButtons({ currentPage, totalPages, onPageChang
       <button
         onClick={handleNext}
         disabled={currentPage === totalPages}
-        className="flex items-center justify-center bg-transparent hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+        className="flex items-center justify-center bg-transparent hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-opacity"
         style={{ width: '50px', height: '50px', borderRadius: '20px', border: `3px solid ${colors.white}` }}
         aria-label="Próxima página"
       >

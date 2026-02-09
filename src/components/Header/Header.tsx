@@ -11,6 +11,7 @@ interface HeaderProps {
   onLanguageChange: (value: string) => void
   selectedRegions: string[]
   onRegionsChange: (regions: string[]) => void
+  languages: Array<{ code: string; name: string }>
 }
 
 export function Header({
@@ -19,7 +20,8 @@ export function Header({
   selectedLanguage,
   onLanguageChange,
   selectedRegions,
-  onRegionsChange
+  onRegionsChange,
+  languages
 }: HeaderProps) {
   return (
     <header className="py-4 px-4 lg:py-6 lg:px-8">
@@ -34,7 +36,7 @@ export function Header({
           />
           <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 w-full lg:w-auto">
             <SearchBar value={searchQuery} onChange={onSearchChange} />
-            <LanguageSelect value={selectedLanguage} onChange={onLanguageChange} />
+            <LanguageSelect value={selectedLanguage} onChange={onLanguageChange} languages={languages} />
           </div>
         </div>
         <div className="flex justify-start region-filters-row">

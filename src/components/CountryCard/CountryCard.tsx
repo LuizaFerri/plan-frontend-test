@@ -1,4 +1,3 @@
-import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 
 import { colors } from '@/styles/colors'
@@ -41,22 +40,32 @@ export function CountryCard({ name, capital, region, flag, code }: CountryCardPr
       </div>
 
       <div className="p-6 flex flex-col items-center">
-        <div className="mb-4">
+        <div className="mb-4 relative w-[24px] h-[18px]">
           <Image
             src={flag}
             alt={`Bandeira ${name}`}
             width={24}
             height={18}
+            unoptimized
+            onError={(e) => {
+              const target = e.target as HTMLImageElement
+              target.style.display = 'none'
+            }}
           />
         </div>
 
-        <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">
+        <h3 className="font-bold text-center mb-2" style={{ fontSize: '23px', color: '#707070' }}>
           {name}
         </h3>
 
-        <div className="flex items-center gap-2 mb-6" style={{ color: colors.primary }}>
-          <MapPin className="w-4 h-4" />
-          <span className="text-sm font-medium">{capital}</span>
+        <div className="flex items-center gap-2 mb-6">
+          <Image
+            src="/img/region-icon.png"
+            alt="Capital"
+            width={20}
+            height={20}
+          />
+          <span className="font-bold" style={{ fontSize: '18px', color: '#707070' }}>{capital}</span>
         </div>
 
         <CountryCardButton code={code} />
