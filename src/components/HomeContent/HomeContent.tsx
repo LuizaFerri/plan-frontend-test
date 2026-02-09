@@ -84,7 +84,7 @@ export default function HomeContent() {
         onRegionsChange={setSelectedRegions}
       />
 
-      <main className="flex-1 py-12 px-8">
+      <main className="flex-1 py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <CountryGrid countries={MOCK_COUNTRIES} />
           <Pagination

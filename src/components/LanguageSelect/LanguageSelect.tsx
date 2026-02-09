@@ -9,7 +9,7 @@ interface LanguageSelectProps {
 
 export function LanguageSelect({ value, onChange }: LanguageSelectProps) {
   return (
-    <div className="relative" style={{ width: '420px', height: '50px' }}>
+    <div className="relative input-container-responsive">
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}

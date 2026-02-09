@@ -10,7 +10,7 @@ interface SearchBarProps {
 
 export function SearchBar({ value, onChange, placeholder = 'Informe o país que deseja conhecer...' }: SearchBarProps) {
   return (
-    <div className="relative" style={{ width: '420px', height: '50px' }}>
+    <div className="relative input-container-responsive">
       <input
         type="text"
         value={value}

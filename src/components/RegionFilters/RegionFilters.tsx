@@ -29,7 +29,7 @@ export function RegionFilters({ selectedRegions, onChange }: RegionFiltersProps)
   }
 
   return (
-    <div className="flex flex-wrap gap-6 items-center" style={{ width: '856px' }}>
+    <div className="flex flex-wrap gap-3 lg:gap-6 items-center region-filters-container">
       {REGIONS.map((region) => (
         <label
           key={region.value}

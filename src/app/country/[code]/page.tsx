@@ -37,7 +37,7 @@ export default function CountryDetail() {
       }}
     >
       {/* Logo */}
-      <div className="px-8" style={{ paddingTop: '67px', paddingBottom: '72px' }}>
+      <div className="px-4 lg:px-8 detail-logo-section">
         <Image
           src="/img/logo.png"
           alt="Plan Logo"
@@ -47,8 +47,8 @@ export default function CountryDetail() {
         />
       </div>
 
-      <main className="flex-1 px-8" style={{ paddingBottom: '205px' }}>
-        <div className="mx-auto" style={{ width: '1300px', height: '567px' }}>
+      <main className="flex-1 px-4 lg:px-8 pb-12 lg:pb-[205px]">
+        <div className="mx-auto detail-container">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-full">
             {/* Header */}
             <div
@@ -72,14 +72,11 @@ export default function CountryDetail() {
             </div>
 
             {/* Content */}
-            <div style={{ paddingTop: '22px', paddingLeft: '20px', paddingRight: '48px' }}>
-              <div className="flex" style={{ gap: '192px', marginBottom: '0' }}>
+            <div className="pt-4 px-4 lg:pt-[22px] lg:pl-[20px] lg:pr-[48px]">
+              <div className="flex detail-content-flex">
                 {/* Left side - Flag */}
                 <div className="flex flex-col">
-                  <div
-                    className="relative"
-                    style={{ width: '290px', height: '220px' }}
-                  >
+                  <div className="relative detail-flag mx-auto lg:mx-0">
                     <Image
                       src={country.flag}
                       alt={`Bandeira ${country.name}`}
@@ -91,68 +88,68 @@ export default function CountryDetail() {
                 </div>
 
                 {/* Right side - Info */}
-                <div style={{ width: '750px' }}>
+                <div className="detail-info">
                   <h1
-                    className="font-bold"
-                    style={{ fontStyle: 'italic', fontSize: '50px', color: colors.mediumGray, marginBottom: '15px' }}
+                    className="font-bold detail-title"
+                    style={{ fontStyle: 'italic', color: colors.mediumGray, marginBottom: '15px' }}
                   >
                     {country.name}
                   </h1>
 
                   <div className="space-y-3">
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
+                      <span className="detail-field-label" style={{ fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray }}>
                         Nome oficial:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
+                      <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.officialName}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
+                      <span className="detail-field-label" style={{ fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray }}>
                         Capital:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
+                      <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.capital}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
+                      <span className="detail-field-label" style={{ fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray }}>
                         População:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
+                      <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.population}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
+                      <span className="detail-field-label" style={{ fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray }}>
                         Moeda:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
+                      <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.currency}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
+                      <span className="detail-field-label" style={{ fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray }}>
                         Idiomas:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
+                      <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.languages}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
+                      <span className="detail-field-label" style={{ fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray }}>
                         Região:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
+                      <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.region}
                       </span>
                     </div>
                     <div className="flex gap-3">
-                      <span style={{ fontSize: '23px', fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray, minWidth: '140px', textAlign: 'right' }}>
+                      <span className="detail-field-label" style={{ fontWeight: 400, fontStyle: 'normal', color: colors.mediumGray }}>
                         Sub-Região:
                       </span>
-                      <span style={{ fontSize: '23px', fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
+                      <span className="detail-field-value" style={{ fontWeight: 700, fontStyle: 'normal', color: colors.mediumGray }}>
                         {country.subRegion}
                       </span>
                     </div>
@@ -162,7 +159,7 @@ export default function CountryDetail() {
             </div>
 
             {/* Button */}
-            <div className="flex justify-center" style={{ paddingTop: '52px', paddingBottom: '142px' }}>
+            <div className="flex justify-center detail-button-area">
               <BackButton />
             </div>
           </div>

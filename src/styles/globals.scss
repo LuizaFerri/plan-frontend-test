@@ -15,3 +15,176 @@
 .footer-copyright {
   font-family: var(--font-open-sans);
 }
+
+.header-top-row {
+  gap: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+@media (min-width: 1024px) {
+  .header-top-row {
+    gap: 112px;
+    margin-bottom: 19px;
+    flex-wrap: nowrap;
+  }
+}
+
+.region-filters-row {
+  padding-left: 0;
+}
+@media (min-width: 1024px) {
+  .region-filters-row {
+    padding-left: 220px;
+  }
+}
+
+.input-container-responsive {
+  width: 100%;
+  height: 50px;
+}
+@media (min-width: 1024px) {
+  .input-container-responsive {
+    width: 420px;
+  }
+}
+
+.region-filters-container {
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .region-filters-container {
+    width: 856px;
+  }
+}
+
+.country-card {
+  width: 100%;
+  height: auto;
+  min-height: 238px;
+}
+@media (min-width: 1024px) {
+  .country-card {
+    width: 310px;
+    height: 238px;
+  }
+}
+
+.footer-responsive {
+  height: auto;
+  min-height: 100px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .footer-responsive {
+    height: 130px;
+    padding-left: 75px;
+    padding-right: 0;
+  }
+}
+
+.detail-container {
+  width: 100%;
+  height: auto;
+}
+@media (min-width: 1280px) {
+  .detail-container {
+    width: 1300px;
+    height: 567px;
+  }
+}
+
+.detail-content-flex {
+  gap: 2rem;
+  flex-direction: column;
+}
+@media (min-width: 1024px) {
+  .detail-content-flex {
+    gap: 192px;
+    flex-direction: row;
+  }
+}
+
+.detail-flag {
+  width: 200px;
+  height: 150px;
+}
+@media (min-width: 1024px) {
+  .detail-flag {
+    width: 290px;
+    height: 220px;
+  }
+}
+
+.detail-info {
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .detail-info {
+    width: 750px;
+  }
+}
+
+.detail-title {
+  font-size: 1.75rem;
+}
+@media (min-width: 1024px) {
+  .detail-title {
+    font-size: 50px;
+  }
+}
+
+.detail-field-label,
+.detail-field-value {
+  font-size: 1rem;
+}
+@media (min-width: 1024px) {
+  .detail-field-label,
+  .detail-field-value {
+    font-size: 23px;
+  }
+}
+
+.detail-field-label {
+  min-width: 90px;
+  text-align: left;
+}
+@media (min-width: 1024px) {
+  .detail-field-label {
+    min-width: 140px;
+    text-align: right;
+  }
+}
+
+.detail-logo-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+@media (min-width: 1024px) {
+  .detail-logo-section {
+    padding-top: 67px;
+    padding-bottom: 72px;
+  }
+}
+
+.detail-button-area {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+@media (min-width: 1024px) {
+  .detail-button-area {
+    padding-top: 52px;
+    padding-bottom: 142px;
+  }
+}
+
+.back-button-responsive {
+  width: 200px;
+  height: 44px;
+}
+@media (min-width: 1024px) {
+  .back-button-responsive {
+    width: 270px;
+    height: 47px;
+  }
+}
